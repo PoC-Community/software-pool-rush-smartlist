@@ -14,9 +14,14 @@ func AddList(email string, newlist List) error {
 		return err
 	}
 	if newlist.Name == "" {
-
+		nblists, err := getUserNbLists(email)
+		if err != nil {
+			return err
+		}
+		newlist.Name = "List " + string(nblists)
 	}
 	DataBase.Exec("INSERT INTO Lists (name, list, shop, status, date, fk_owner) VALUES (?, ?, ?, ?, ?, ?)", newlist.Name, newlist.List, newlist.Shop, newlist.Status, newlist.Date, userid)
+	DataBase.Exec("UPDATE Users SET nblists = nblists + 1 WHERE id = ?;", userid)
 	return nil
 }
 
@@ -62,5 +67,20 @@ func UpdateList(email string, list List) error {
 		return err
 	}
 	DataBase.Exec("UPDATE Lists SET name = ?, list = ?, shop = ?, status = ?, date = ? WHERE name LIKE ? AND fk_owner = ?", list.Name, list.List, list.Shop, list.Status, list.Date, list.Name, userid)
+	return nil
+}
+
+func DeleteList(email, name string) error {
+	if email == "" {
+		return errorNoEmail
+	}
+	if name == "" {
+		return errorNoName
+	}
+	userid, err := getUserID(email)
+	if err != nil {
+		return err
+	}
+	DataBase.Exec("DELETE FROM Lists WHERE name LIKE ? AND fk_owner = ?", name, userid)
 	return nil
 }
