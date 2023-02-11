@@ -12,9 +12,9 @@ type Product struct {
 }
 
 type List struct {
-	Name   string
-	List   string
-	Shop   string
-	Status bool
-	Date   string
+	Name   string `json:"name" binding:"required"`
+	List   string `json:"list" binding:"required"`
+	Shop   string `json:"shop" binding:"required"`
+	Status bool   `json:"status" binding:"required"`
+	Date   string `json:"date" binding:"required"`
 }

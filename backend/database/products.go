@@ -15,7 +15,7 @@ func AddProduct(email string, product Product) error {
 	if err != nil {
 		return err
 	}
-	DataBase.Exec("INSERT INTO Products (product, frequency, fk_owner) VALUES (?, ?, ?);", product.Product, product.Frequency, userid)
+	DataBase.Exec("INSERT INTO Products (product, frequency, fk_user) VALUES (?, ?, ?);", product.Product, product.Frequency, userid)
 	return nil
 }
 
@@ -24,7 +24,7 @@ func GetFavoriteProducts(email string) ([]Product, error) {
 	if email == "" {
 		return products, errorNoEmail
 	}
-	DataBase.Raw("SELECT product, frequency FROM Products INNER JOIN Users ON Products.fk_owner = Users.id WHERE Users.email LIKE ? ORDER BY frequency DESC;", email).Scan(&products)
+	DataBase.Raw("SELECT product, frequency FROM Products INNER JOIN Users ON Products.fk_user = Users.id WHERE Users.email LIKE ? ORDER BY frequency DESC;", email).Scan(&products)
 	return products, nil
 }
 
@@ -36,7 +36,7 @@ func GetProductFrequency(email, product string) (int, error) {
 	if product == "" {
 		return frequency, errorNoProduct
 	}
-	DataBase.Raw("SELECT frequency FROM Products INNER JOIN Users ON Products.fk_owner = Users.id WHERE Users.email LIKE ? AND Products.product LIKE ?;", email, product).Scan(&frequency)
+	DataBase.Raw("SELECT frequency FROM Products INNER JOIN Users ON Products.fk_user = Users.id WHERE Users.email LIKE ? AND Products.product LIKE ?;", email, product).Scan(&frequency)
 	return frequency, nil
 }
 
@@ -47,6 +47,6 @@ func UpdateProductFrequency(email, product string, frequency int) error {
 	if product == "" {
 		return errorNoProduct
 	}
-	DataBase.Exec("UPDATE Products SET frequency = ? WHERE fk_owner = (SELECT id FROM Users WHERE email LIKE ?) AND product LIKE ?;", frequency, email, product)
+	DataBase.Exec("UPDATE Products SET frequency = ? WHERE fk_user = (SELECT id FROM Users WHERE email LIKE ?) AND product LIKE ?;", frequency, email, product)
 	return nil
 }

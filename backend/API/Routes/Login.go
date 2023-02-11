@@ -35,7 +35,7 @@ func generateToken(username string) (string, error) {
 
 func ParseToken(token string) (*Claims, error) {
 	tokenClaims, err := jwt.ParseWithClaims(token, &Claims{}, func(token *jwt.Token) (interface{}, error) {
-		return os.Getenv("JWT_SECRET"), nil
+		return []byte(os.Getenv("JWT_SECRET")), nil
 	})
 
 	if tokenClaims != nil {
@@ -43,7 +43,6 @@ func ParseToken(token string) (*Claims, error) {
 			return claims, nil
 		}
 	}
-
 	return nil, err
 }
 

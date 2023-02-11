@@ -14,6 +14,7 @@ type Claims struct {
 func AuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.GetHeader("Authorization")
+		email := c.GetHeader("email")
 		if token == "" {
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"message": "Authorization header is missing",
@@ -21,11 +22,24 @@ func AuthMiddleware() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
-
 		claims, err := ParseToken(token)
 		if err != nil {
 			c.JSON(http.StatusUnauthorized, gin.H{
 				"message": err.Error(),
+			})
+			c.Abort()
+			return
+		}
+		if email == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"message": "Email header is missing",
+			})
+			c.Abort()
+			return
+		}
+		if claims.Username != email {
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"message": "Email header is invalid",
 			})
 			c.Abort()
 			return
@@ -35,8 +49,8 @@ func AuthMiddleware() gin.HandlerFunc {
 }
 
 func ApplyRoutes(r *gin.Engine) {
-	authorized := r.Group("/")
-	authorized.Use(AuthMiddleware())
 	ApplyRegisterRoutes(r)
 	ApplyLoginRoutes(r)
+	ApplyListsRoutes(r)
+	ApplyProductsRoutes(r)
 }

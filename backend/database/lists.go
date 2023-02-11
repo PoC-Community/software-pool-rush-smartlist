@@ -30,7 +30,7 @@ func GetUserLists(email string) ([]List, error) {
 	if email == "" {
 		return lists, errorNoEmail
 	}
-	DataBase.Raw("SELECT name, list, shop, status, date FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ?", email).Scan(&lists)
+	DataBase.Raw("SELECT name, list, shop, status, date FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ? ORDER BY Lists.id DESC", email).Scan(&lists)
 	return lists, nil
 }
 
@@ -42,7 +42,7 @@ func GetUserListsByShop(email, shop string) ([]List, error) {
 	if shop == "" {
 		return lists, errorNoShop
 	}
-	DataBase.Raw("SELECT name, list, shop, status, date FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ? AND Lists.shop LIKE ?", email, shop).Scan(&lists)
+	DataBase.Raw("SELECT name, list, shop, status, date FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ? AND Lists.shop LIKE ? ORDER BY Lists.id DESC", email, shop).Scan(&lists)
 	return lists, nil
 }
 
@@ -83,4 +83,16 @@ func DeleteList(email, name string) error {
 	}
 	DataBase.Exec("DELETE FROM Lists WHERE name LIKE ? AND fk_owner = ?", name, userid)
 	return nil
+}
+
+func SearchUserList(email, name string) (List, error) {
+	var list List
+	if email == "" {
+		return list, errorNoEmail
+	}
+	if name == "" {
+		return list, errorNoName
+	}
+	DataBase.Raw("SELECT name, list, shop, status, date FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ? AND Lists.name LIKE ?", email, name+"%").Scan(&list)
+	return list, nil
 }

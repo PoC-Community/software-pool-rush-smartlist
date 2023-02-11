@@ -15,8 +15,7 @@ func StoreUserInDB(user User) error {
 	if user.Email == "" {
 		return errorNoPassword
 	}
-	DataBase.Exec("INSERT INTO Users (email, password_hash, "+
-		"nblists) VALUES (?, ?, ?);", user.Email, user.PasswordHash,
+	DataBase.Exec("INSERT INTO Users (email, password_hash, nblists) VALUES (?, ?, ?);", user.Email, user.PasswordHash,
 		user.NbLists)
 	return nil
 }
@@ -34,19 +33,19 @@ func GetUserFromDB(email string) (User, error) {
 }
 
 func getUserID(email string) (int, error) {
-	var userid int
+	var userid struct{ ID int }
 	DataBase.Raw("SELECT id FROM Users WHERE email LIKE ?;", email).Scan(&userid)
-	if userid == 0 {
-		return userid, errorUserNotFound
+	if userid.ID == 0 {
+		return userid.ID, errorUserNotFound
 	}
-	return userid, nil
+	return userid.ID, nil
 }
 
 func getUserNbLists(email string) (int, error) {
-	var nblists int
+	var nblists struct{ NbLists int }
 	DataBase.Raw("SELECT nblists FROM Users WHERE email LIKE ?;", email).Scan(&nblists)
-	if nblists == 0 {
-		return nblists, errorUserNotFound
+	if nblists.NbLists == 0 {
+		return nblists.NbLists, errorUserNotFound
 	}
-	return nblists, nil
+	return nblists.NbLists, nil
 }
