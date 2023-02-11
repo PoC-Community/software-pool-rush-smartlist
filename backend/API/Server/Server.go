@@ -1,7 +1,7 @@
 package Server
 
 import (
-	"Rush/API/Routes/Routes"
+	"Rush/API/Routes"
 	"github.com/gin-gonic/gin"
 )
 

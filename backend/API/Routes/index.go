@@ -1,7 +1,8 @@
 package Routes
 
 import (
-	"Rush/API/Middlewares/Middlewares"
+	"Rush/API/Middlewares"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
 
