@@ -1,7 +1,7 @@
 package Server
 
 import (
-	"SmartListAPI/Routes"
+	"Rush/API/Routes/Routes"
 	"github.com/gin-gonic/gin"
 )
 

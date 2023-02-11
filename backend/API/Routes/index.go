@@ -1,8 +1,7 @@
 package Routes
 
 import (
-	"SmartListAPI/Middlewares"
-	"github.com/dgrijalva/jwt-go"
+	"Rush/API/Middlewares/Middlewares"
 	"github.com/gin-gonic/gin"
 )
 
