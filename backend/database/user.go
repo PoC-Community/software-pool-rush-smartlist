@@ -15,7 +15,7 @@ func StoreUserInDB(user User) error {
 	if user.Email == "" {
 		return errorNoPassword
 	}
-	DataBase.Exec("INSERT INTO Users (email, password_hash, nblists) VALUES (?, ?);", user.Email, user.PasswordHash, user.NbLists)
+	DataBase.Exec("INSERT INTO Users (email, password_hash, nblists) VALUES (?, ?, ?);", user.Email, user.PasswordHash, user.NbLists)
 	return nil
 }
 
