@@ -27,3 +27,26 @@ func GetFavoriteProducts(email string) ([]Product, error) {
 	DataBase.Raw("SELECT product, frequency FROM Products INNER JOIN Users ON Products.fk_owner = Users.id WHERE Users.email LIKE ? ORDER BY frequency DESC;", email).Scan(&products)
 	return products, nil
 }
+
+func GetProductFrequency(email, product string) (int, error) {
+	var frequency int
+	if email == "" {
+		return frequency, errorNoEmail
+	}
+	if product == "" {
+		return frequency, errorNoProduct
+	}
+	DataBase.Raw("SELECT frequency FROM Products INNER JOIN Users ON Products.fk_owner = Users.id WHERE Users.email LIKE ? AND Products.product LIKE ?;", email, product).Scan(&frequency)
+	return frequency, nil
+}
+
+func UpdateProductFrequency(email, product string, frequency int) error {
+	if email == "" {
+		return errorNoEmail
+	}
+	if product == "" {
+		return errorNoProduct
+	}
+	DataBase.Exec("UPDATE Products SET frequency = ? WHERE fk_owner = (SELECT id FROM Users WHERE email LIKE ?) AND product LIKE ?;", frequency, email, product)
+	return nil
+}
