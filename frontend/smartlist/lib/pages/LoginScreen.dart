@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:smartlist/pages/CurrentScreen.dart';
 import 'package:smartlist/pages/RegisterScreen.dart';
+import 'package:smartlist/utils/LoginAndRegister func.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  late String _email;
+  late String _password;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +42,6 @@ class LoginScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child:
-
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
                     image: AssetImage("assets/images/Logo.png"),
@@ -79,10 +100,11 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
                   child: TextField(
                     key: const Key("LoginEmail"),
-                    controller: TextEditingController(),
+                    controller: _emailController,
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
+                    onChanged: (value) => _email = value,
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -129,10 +151,11 @@ class LoginScreen extends StatelessWidget {
                 ),
                 TextField(
                   key: const Key("LoginPass"),
-                  controller: TextEditingController(),
+                  controller: _passwordController,
                   obscureText: true,
                   textAlign: TextAlign.start,
                   maxLines: 1,
+                  onChanged: (value) => _password = value,
                   style: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
@@ -234,7 +257,7 @@ class LoginScreen extends StatelessWidget {
                         flex: 1,
                         child: MaterialButton(
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentScreen()));
+                            login(_email, _password);
                           },
                           color: const Color(0xffffd200),
                           elevation: 0,

@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:smartlist/pages/LoginScreen.dart';
+import 'package:smartlist/utils/LoginAndRegister func.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<void> sendCredentials(String email, String password) async {
-  final response = await http.post(
-    'http://my-api.com/login' as Uri,
-    headers: {'Content-Type': 'application/json'},
-    body: jsonEncode({'email': email, 'password': password}),
-  );
-
-  if (response.statusCode == 200) {
-    // Handle successful login
-  } else {
-    // Handle unsuccessful login
-    throw Exception('Failed to login');
-  }
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
 
-class RegisterScreen extends StatelessWidget {
+class _RegisterScreenState extends State<RegisterScreen> {
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  late String _email;
+  late String _password;
+  late String _confirmPassword;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +45,6 @@ class RegisterScreen extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child:
-
                       ///***If you have exported images you must have to copy those images in assets/images directory.
                       Image(
                     image: AssetImage("assets/images/Logo.png"),
@@ -96,10 +103,11 @@ class RegisterScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
                     key: Key("RegisterEmail"),
-                    controller: TextEditingController(),
+                    controller: _emailController,
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
+                    onChanged: (value) => _email = value,
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -148,10 +156,11 @@ class RegisterScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
                     key: Key("RegisterPass"),
-                    controller: TextEditingController(),
+                    controller: _passwordController,
                     obscureText: true,
                     textAlign: TextAlign.start,
                     maxLines: 1,
+                    onChanged: (value) => _password = value,
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -200,10 +209,22 @@ class RegisterScreen extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 30),
                   child: TextField(
                     key: const Key("RegisterConfPass"),
-                    controller: TextEditingController(),
+                    controller: _confirmPasswordController,
                     obscureText: true,
                     textAlign: TextAlign.start,
                     maxLines: 1,
+                    onChanged: (value) {
+                      _confirmPassword = value;
+                      if (_confirmPassword != _password) {
+                        // Show error message
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              duration: Duration(seconds: 2),
+                              content: Text('Passwords do not match'),
+                            )
+                        );
+                      }
+                    },
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
@@ -285,7 +306,9 @@ class RegisterScreen extends StatelessWidget {
                       flex: 1,
                       child: MaterialButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          if (_confirmPassword == _password) {
+                            register(_email, _password);
+                          }
                         },
                         color: const Color(0xffffd200),
                         elevation: 0,
