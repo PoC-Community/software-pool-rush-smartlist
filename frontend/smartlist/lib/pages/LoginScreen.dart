@@ -34,8 +34,8 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         "Smart",
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.clip,
@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                           color: Color(0xffffffff),
                         ),
                       ),
-                      const Text(
+                      Text(
                         "List",
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.clip,

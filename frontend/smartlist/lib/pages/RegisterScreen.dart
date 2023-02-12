@@ -1,5 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:smartlist/pages/LoginScreen.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+Future<void> sendCredentials(String email, String password) async {
+  final response = await http.post(
+    'http://my-api.com/login' as Uri,
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({'email': email, 'password': password}),
+  );
+
+  if (response.statusCode == 200) {
+    // Handle successful login
+  } else {
+    // Handle unsuccessful login
+    throw Exception('Failed to login');
+  }
+}
+
 
 class RegisterScreen extends StatelessWidget {
   @override
@@ -32,8 +50,8 @@ class RegisterScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       "Smart",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
@@ -44,7 +62,7 @@ class RegisterScreen extends StatelessWidget {
                         color: Color(0xffffffff),
                       ),
                     ),
-                    const Text(
+                    Text(
                       "List",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
