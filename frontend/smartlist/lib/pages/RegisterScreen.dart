@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:smartlist/pages/LoginScreen.dart';
 
 class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2e2e2e),
+      backgroundColor: const Color(0xff2e2e2e),
       body: Align(
         alignment: Alignment.center,
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                   child:
 
@@ -32,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
+                    const Text(
                       "Smart",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
@@ -43,7 +44,7 @@ class RegisterScreen extends StatelessWidget {
                         color: Color(0xffffffff),
                       ),
                     ),
-                    Text(
+                    const Text(
                       "List",
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.clip,
@@ -56,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -74,155 +75,155 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
                     controller: TextEditingController(),
                     obscureText: false,
                     textAlign: TextAlign.start,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontSize: 16,
-                      color: Color(0xff000000),
+                      color: Color(0xffffffff),
                     ),
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       labelText: "Email",
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
                         color: Color(0xff9e9e9e),
                       ),
                       hintText: "Write your email here",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 14,
                         color: Color(0xff9e9e9e),
                       ),
                       filled: true,
-                      fillColor: Color(0x00ffffff),
+                      fillColor: const Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
                     controller: TextEditingController(),
                     obscureText: true,
                     textAlign: TextAlign.start,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontSize: 16,
-                      color: Color(0xff000000),
+                      color: Color(0xffffffff),
                     ),
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       labelText: "Password",
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
                         color: Color(0xff9e9e9e),
                       ),
                       hintText: "Write your password here",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 14,
                         color: Color(0xff9e9e9e),
                       ),
                       filled: true,
-                      fillColor: Color(0x00ffffff),
+                      fillColor: const Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 30),
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 30),
                   child: TextField(
                     controller: TextEditingController(),
                     obscureText: true,
                     textAlign: TextAlign.start,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontStyle: FontStyle.normal,
                       fontSize: 16,
-                      color: Color(0xff000000),
+                      color: Color(0xffffffff),
                     ),
                     decoration: InputDecoration(
                       disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(4.0),
                         borderSide:
-                            BorderSide(color: Color(0xffffd200), width: 1),
+                            const BorderSide(color: Color(0xffffd200), width: 1),
                       ),
                       labelText: "Confirm Password",
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 16,
                         color: Color(0xff9e9e9e),
                       ),
                       hintText: "Confirm your password here",
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                         fontWeight: FontWeight.w400,
                         fontStyle: FontStyle.normal,
                         fontSize: 14,
                         color: Color(0xff9e9e9e),
                       ),
                       filled: true,
-                      fillColor: Color(0x00ffffff),
+                      fillColor: const Color(0x00ffffff),
                       isDense: false,
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                     ),
                   ),
                 ),
@@ -234,14 +235,19 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: MaterialButton(
-                        onPressed: () {},
-                        color: Color(0xffffffff),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                        },
+                        color: const Color(0xffffffff),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0),
                         ),
-                        padding: EdgeInsets.all(16),
-                        child: Text(
+                        padding: const EdgeInsets.all(16),
+                        textColor: const Color(0xff000000),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        minWidth: MediaQuery.of(context).size.width * 0.3,
+                        child: const Text(
                           "Login",
                           style: TextStyle(
                             fontSize: 16,
@@ -249,26 +255,26 @@ class RegisterScreen extends StatelessWidget {
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                        textColor: Color(0xff000000),
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        minWidth: MediaQuery.of(context).size.width * 0.3,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
                       flex: 1,
                       child: MaterialButton(
                         onPressed: () {},
-                        color: Color(0xffffd200),
+                        color: const Color(0xffffd200),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12.0),
-                          side: BorderSide(color: Color(0xff9e9e9e), width: 1),
+                          side: const BorderSide(color: Color(0xff9e9e9e), width: 1),
                         ),
-                        padding: EdgeInsets.all(16),
-                        child: Text(
+                        padding: const EdgeInsets.all(16),
+                        textColor: const Color(0xff000000),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        minWidth: MediaQuery.of(context).size.width * 0.3,
+                        child: const Text(
                           "Register",
                           style: TextStyle(
                             fontSize: 16,
@@ -276,9 +282,6 @@ class RegisterScreen extends StatelessWidget {
                             fontStyle: FontStyle.normal,
                           ),
                         ),
-                        textColor: Color(0xff000000),
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        minWidth: MediaQuery.of(context).size.width * 0.3,
                       ),
                     ),
                   ],
