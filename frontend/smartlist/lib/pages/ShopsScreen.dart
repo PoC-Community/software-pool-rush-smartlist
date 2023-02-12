@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:smartlist/pages/CurrentScreen.dart';
+import 'package:http/http.dart' as http;
+import '../utils/Email.dart';
+import '../utils/Token.dart';
 
 class ShopsScreen extends StatefulWidget {
   @override
@@ -8,6 +11,23 @@ class ShopsScreen extends StatefulWidget {
 }
 
 class _ShopsScreenState extends State<ShopsScreen> {
+  List<Container> shopslist = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getShops();
+  }
+
+  Future<void> _getShops() async {
+    List<Container> list = [];
+    final token = await getToken();
+    final email = await getEmail();
+    final response = await http.get(
+        Uri.http('51.159.159.151:3000', '/lists'),
+        headers: {'Authorization': token!, "email": email!});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

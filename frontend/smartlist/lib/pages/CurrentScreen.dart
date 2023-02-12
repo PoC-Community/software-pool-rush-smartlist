@@ -26,7 +26,7 @@ class _CurrentScreenState extends State<CurrentScreen> {
     final token = await getToken();
     final email = await getEmail();
     final response = await http.get(
-        "http://my-api.com/lists" as Uri,
+        Uri.http('51.159.159.151:3000', '/lists'),
         headers: {'Authorization': token!, "email": email!});
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> data = jsonDecode(response.body);

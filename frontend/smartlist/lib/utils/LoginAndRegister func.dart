@@ -8,8 +8,8 @@ import 'package:smartlist/utils/Email.dart';
 
 Future<void> register(String email, String password) async {
   final response = await http.post(
-    'http://my-api.com/register' as Uri,
-    headers: {'Content-Type': 'application/json'},
+    Uri.http('51.159.159.151:3000', '/register'),
+    headers: {'Access-Control-Allow-Origin': '*'},
     body: jsonEncode({'email': email, 'password': password}),
   );
 
@@ -23,7 +23,7 @@ Future<void> register(String email, String password) async {
 
 Future<void> login(String email, String password) async {
   final response = await http.post(
-    'http://my-api.com/login' as Uri,
+    Uri.http('51.159.159.151:3000', '/login'),
     headers: {'Content-Type': 'application/json'},
     body: jsonEncode({'email': email, 'password': password}),
   );
