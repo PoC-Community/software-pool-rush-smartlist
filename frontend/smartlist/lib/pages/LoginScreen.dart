@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartlist/pages/CurrentScreen.dart';
 import 'package:smartlist/pages/RegisterScreen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -77,6 +78,7 @@ class LoginScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
                   child: TextField(
+                    key: const Key("LoginEmail"),
                     controller: TextEditingController(),
                     obscureText: false,
                     textAlign: TextAlign.start,
@@ -126,6 +128,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 TextField(
+                  key: const Key("LoginPass"),
                   controller: TextEditingController(),
                   obscureText: true,
                   textAlign: TextAlign.start,
@@ -230,7 +233,9 @@ class LoginScreen extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentScreen()));
+                          },
                           color: const Color(0xffffd200),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
