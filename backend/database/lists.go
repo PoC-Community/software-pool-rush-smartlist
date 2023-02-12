@@ -13,7 +13,7 @@ func AddList(email string, newlist List) error {
 	if err != nil {
 		return err
 	}
-	if newlist.Name == "" {
+	if newlist.Name == "" || newlist.Name == " " {
 		nblists, err := getUserNbLists(email)
 		if err != nil {
 			return err

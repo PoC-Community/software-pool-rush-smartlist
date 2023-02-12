@@ -4,6 +4,7 @@ import (
 	"Rush/database"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
 type newListRequest struct {
@@ -33,11 +34,12 @@ func listpost(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-	if listupdate.Name != "" {
+	if listupdate.Name != "" || listupdate.Name != " " {
 		dblist.Name = listupdate.Name
 	}
 	dblist.List = listupdate.List
 	dblist.Shop = listupdate.Shop
+	dblist.Date = time.Now().Format("2006-01-02")
 	err = database.UpdateList(c.GetHeader("email"), dblist)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -75,7 +77,7 @@ func newList(c *gin.Context) {
 	dblist.List = newlist.List
 	dblist.Shop = newlist.Shop
 	dblist.Status = false
-	dblist.Date = "01-01-1990"
+	dblist.Date = time.Now().Format("2006-01-02")
 	userEmail := c.GetHeader("email")
 	err := database.AddList(userEmail, dblist)
 	if err != nil {
