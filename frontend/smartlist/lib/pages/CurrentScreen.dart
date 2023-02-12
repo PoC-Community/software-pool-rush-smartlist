@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:smartlist/pages/ShopsScreen.dart';
 
-class CurrentScreen extends StatelessWidget {
+class CurrentScreen extends StatefulWidget {
+  @override
+  _CurrentScreenState createState() => _CurrentScreenState();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -477,3 +480,39 @@ class CurrentScreen extends StatelessWidget {
     );
   }
 }
+
+class _CurrentScreenState extends State<CurrentScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [    CurrentScreen(),    ShopsScreen()];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Shops',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color(0xffffd200),
+        unselectedItemColor: Color(0xff9e9e9e),
+        onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
