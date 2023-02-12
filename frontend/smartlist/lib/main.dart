@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'SmartList',
 
       /// TODO Replace with your first screen class name
-      home: StartScreen(),
+      home: CurrentScreen(),//StartScreen(),
     );
   }
 }
