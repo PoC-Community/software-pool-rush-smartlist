@@ -32,9 +32,6 @@ class _CurrentScreenState extends State<CurrentScreen> {
             color: Color(0xffffd200),
           ),
         ),
-        actions: const [
-          Icon(Icons.search, color: Color(0xffffd200), size: 30),
-        ],
       ),
       bottomNavigationBar: GNav(
         rippleColor: const Color(0xffffd200),
