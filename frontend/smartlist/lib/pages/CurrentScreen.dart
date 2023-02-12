@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:smartlist/pages/ShopsScreen.dart';
 
 class CurrentScreen extends StatefulWidget {
   @override
-  _CurrentScreenState createState() => _CurrentScreenState();
+  State<CurrentScreen> createState() => _CurrentScreenState();
+}
+
+class _CurrentScreenState extends State<CurrentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,31 +30,46 @@ class CurrentScreen extends StatefulWidget {
           ),
         ),
         actions: const [
-          Icon(Icons.search, color: Color(0xffffd200), size: 22),
+          Icon(Icons.search, color: Color(0xffffd200), size: 30),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.update),
-            label: 'Current',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'All',
-          )
-        ],
+      bottomNavigationBar: GNav(
+        rippleColor: const Color(0xffffd200),
+        hoverColor: const Color(0xffffd200),
+        gap: 8,
+        activeColor: const Color(0xf5ffd200),
         backgroundColor: const Color(0xff262626),
-        currentIndex: 0,
-        elevation: 8,
-        iconSize: 24,
-        selectedItemColor: const Color(0xffffd200),
-        unselectedItemColor: const Color(0xff9e9e9e),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (value) {},
+        iconSize: 35,
+        duration: const Duration(milliseconds: 800),
+        tabBackgroundColor: const Color(0xff636262),
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        color: const Color(0xff000000),
+        tabs: const [
+          GButton(
+            icon: Icons.update,
+            textSize: 20,
+            text: 'Current',
+          ),
+          GButton(
+            icon: Icons.list,
+            text: 'All',
+            textSize: 20,
+          ),
+        ],
+        selectedIndex: 0,
+        onTabChange: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CurrentScreen()),
+            );
+          } else if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ShopsScreen()),
+            );
+          }
+        },
       ),
       body: Stack(
         alignment: Alignment.topLeft,
@@ -77,7 +96,7 @@ class CurrentScreen extends StatefulWidget {
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(12.0),
                           border:
-                              Border.all(color: const Color(0xffffd200), width: 1),
+                          Border.all(color: const Color(0xffffd200), width: 1),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -100,18 +119,18 @@ class CurrentScreen extends StatefulWidget {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
                                           flex: 1,
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.max,
                                             children: const [
                                               Expanded(
@@ -140,12 +159,13 @@ class CurrentScreen extends StatefulWidget {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 4, 0, 0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           const Expanded(
@@ -164,14 +184,15 @@ class CurrentScreen extends StatefulWidget {
                                           ),
                                           Container(
                                             margin:
-                                                const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                            const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 4, horizontal: 8),
                                             decoration: BoxDecoration(
                                               color: const Color(0x4dffd200),
                                               shape: BoxShape.rectangle,
                                               borderRadius:
-                                                  BorderRadius.circular(4.0),
+                                              BorderRadius.circular(4.0),
                                             ),
                                             child: const Text(
                                               "Leclerc",
@@ -203,7 +224,7 @@ class CurrentScreen extends StatefulWidget {
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(12.0),
                           border:
-                              Border.all(color: const Color(0xffffd200), width: 1),
+                          Border.all(color: const Color(0xffffd200), width: 1),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -226,18 +247,18 @@ class CurrentScreen extends StatefulWidget {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
                                           flex: 1,
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.max,
                                             children: const [
                                               Expanded(
@@ -247,7 +268,7 @@ class CurrentScreen extends StatefulWidget {
                                                   textAlign: TextAlign.start,
                                                   maxLines: 3,
                                                   overflow:
-                                                      TextOverflow.ellipsis,
+                                                  TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     fontStyle: FontStyle.normal,
@@ -267,12 +288,13 @@ class CurrentScreen extends StatefulWidget {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 4, 0, 0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           const Expanded(
@@ -291,14 +313,15 @@ class CurrentScreen extends StatefulWidget {
                                           ),
                                           Container(
                                             margin:
-                                                const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                            const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 4, horizontal: 8),
                                             decoration: BoxDecoration(
                                               color: const Color(0x4dffd200),
                                               shape: BoxShape.rectangle,
                                               borderRadius:
-                                                  BorderRadius.circular(4.0),
+                                              BorderRadius.circular(4.0),
                                             ),
                                             child: const Text(
                                               "Casino",
@@ -330,7 +353,7 @@ class CurrentScreen extends StatefulWidget {
                           shape: BoxShape.rectangle,
                           borderRadius: BorderRadius.circular(12.0),
                           border:
-                              Border.all(color: const Color(0xffffd200), width: 1),
+                          Border.all(color: const Color(0xffffd200), width: 1),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -353,18 +376,18 @@ class CurrentScreen extends StatefulWidget {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
                                           flex: 1,
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                            CrossAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.max,
                                             children: const [
                                               Expanded(
@@ -393,12 +416,13 @@ class CurrentScreen extends StatefulWidget {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 4, 0, 0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           const Expanded(
@@ -417,14 +441,15 @@ class CurrentScreen extends StatefulWidget {
                                           ),
                                           Container(
                                             margin:
-                                                const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                            const EdgeInsets.fromLTRB(
+                                                8, 0, 0, 0),
                                             padding: const EdgeInsets.symmetric(
                                                 vertical: 4, horizontal: 8),
                                             decoration: BoxDecoration(
                                               color: const Color(0x4dffd200),
                                               shape: BoxShape.rectangle,
                                               borderRadius:
-                                                  BorderRadius.circular(4.0),
+                                              BorderRadius.circular(4.0),
                                             ),
                                             child: const Text(
                                               "Leroy Merlin",
@@ -460,8 +485,14 @@ class CurrentScreen extends StatefulWidget {
               alignment: Alignment.center,
               margin: const EdgeInsets.all(0),
               padding: const EdgeInsets.all(0),
-              width: MediaQuery.of(context).size.width * 0.2,
-              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width * 0.2,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.1,
               decoration: BoxDecoration(
                 color: const Color(0xffffd200),
                 shape: BoxShape.circle,
@@ -476,41 +507,6 @@ class CurrentScreen extends StatefulWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _CurrentScreenState extends State<CurrentScreen> {
-  int _selectedIndex = 0;
-
-  final List<Widget> _pages = [Container(), ShopsScreen()];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Shops',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color(0xffffd200),
-        unselectedItemColor: const Color(0xff9e9e9e),
-        onTap: _onItemTapped,
       ),
     );
   }

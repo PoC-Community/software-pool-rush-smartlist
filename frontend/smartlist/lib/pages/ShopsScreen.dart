@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:smartlist/pages/CurrentScreen.dart';
 
-class ShopsScreen extends StatelessWidget {
+class ShopsScreen extends StatefulWidget {
+  @override
+  State<ShopsScreen> createState() => _ShopsScreenState();
+}
+
+class _ShopsScreenState extends State<ShopsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,28 +33,43 @@ class ShopsScreen extends StatelessWidget {
           Icon(Icons.search, color: Color(0xffffd200), size: 22),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.update),
-            label: 'Current',
+      bottomNavigationBar: GNav(
+        rippleColor: const Color(0xffffd200),
+        hoverColor: const Color(0xffffd200),
+        gap: 8,
+        activeColor: const Color(0xf5ffd200),
+        backgroundColor: const Color(0xff262626),
+        iconSize: 35,
+        duration: const Duration(milliseconds: 800),
+        tabBackgroundColor: const Color(0xff636262),
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        color: const Color(0xff000000),
+        tabs: const [
+          GButton(
+            icon: Icons.update,
+            textSize: 20,
+            text: 'Current',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'All',
-          )
+          GButton(
+            icon: Icons.list,
+            text: 'All',
+            textSize: 20,
+          ),
         ],
-        backgroundColor: Color(0xff262626),
-        currentIndex: 1,
-        elevation: 50,
-        iconSize: 24,
-        selectedItemColor: Color(0xffffd200),
-        unselectedItemColor: Color(0xff9e9e9e),
-        selectedFontSize: 14,
-        unselectedFontSize: 14,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (value) {},
+        selectedIndex: 1,
+        onTabChange: (index) {
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CurrentScreen()),
+            );
+          } else if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ShopsScreen()),
+            );
+          }
+        },
       ),
       body: GridView(
         padding: EdgeInsets.all(16),
