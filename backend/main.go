@@ -4,9 +4,11 @@ import (
 	"Rush/API/Server"
 	"Rush/database"
 	"fmt"
+	"time"
 )
 
 func main() {
+	time.Sleep(5 * time.Second)
 	db := database.InitDatabase()
 	fmt.Println("Database started")
 	s := Server.NewServer()

@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  backend:
+    image: my_backend_image:latest
+    environment:
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=postgres
+      - API_PORT=3000
+      - API_HOST=localhost
+    ports:
+      - 3000:3000
+    networks:
+      - backend
+  database:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=smartlist
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+volumes:
+  db-data:
+networks:
+  backend:
+    driver: bridge
