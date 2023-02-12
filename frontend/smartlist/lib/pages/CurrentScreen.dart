@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:smartlist/pages/CreateList.dart';
 import 'package:smartlist/pages/ShopsScreen.dart';
-import 'package:smartlist/utils/getLists.dart';
+import 'package:smartlist/utils/Email.dart';
+import 'package:smartlist/utils/Token.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class CurrentScreen extends StatefulWidget {
   @override
@@ -10,7 +13,164 @@ class CurrentScreen extends StatefulWidget {
 }
 
 class _CurrentScreenState extends State<CurrentScreen> {
-  var lists = ProcessLists(getLists());
+  List<Container> listslist = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getLists();
+  }
+
+  Future<void> _getLists() async {
+    List<Container> list = [];
+    final token = await getToken();
+    final email = await getEmail();
+    final response = await http.get(
+        "http://my-api.com/lists" as Uri,
+        headers: {'Authorization': token!, "email": email!});
+    if (response.statusCode == 200) {
+      List<Map<String, dynamic>> data = jsonDecode(response.body);
+      for (var i = 0; i < data.length; i++) {
+        list.add(Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: const Color(0xff636262),
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(12.0),
+            border:
+            Border.all(color: const Color(0xffffd200), width: 1),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const Icon(
+                Icons.article,
+                color: Color(0xffffd200),
+                size: 50,
+              ),
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.start,
+                        crossAxisAlignment:
+                        CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    data[i]["name"],
+                                    textAlign: TextAlign.start,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.clip,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 16,
+                                      color: Color(0xff000000),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Icon(
+                            Icons.more_horiz,
+                            color: Color(0xff212435),
+                            size: 20,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(
+                            0, 4, 0, 0),
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.start,
+                          crossAxisAlignment:
+                          CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                             Expanded(
+                              flex: 1,
+                              child: Text(
+                                data[i]["date"],
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.clip,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 14,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin:
+                              const EdgeInsets.fromLTRB(
+                                  8, 0, 0, 0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 4, horizontal: 8),
+                              decoration: BoxDecoration(
+                                color: const Color(0x4dffd200),
+                                shape: BoxShape.rectangle,
+                                borderRadius:
+                                BorderRadius.circular(4.0),
+                              ),
+                              child: Text(
+                                data[i]["shop"],
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.clip,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 12,
+                                  color: Color(0xff000000),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
+        );
+      }
+      setState(() {
+        listslist = list;
+      });
+    } else {
+      throw Exception('Failed to load lists');
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,264 +248,8 @@ class _CurrentScreenState extends State<CurrentScreen> {
                     shrinkWrap: true,
                     physics: const ScrollPhysics(),
                     children: [
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xff636262),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                          Border.all(color: const Color(0xffffd200), width: 1),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const Icon(
-                              Icons.article,
-                              color: Color(0xffffd200),
-                              size: 50,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: const [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Text(
-                                                  "Web Ideas",
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 16,
-                                                    color: Color(0xff000000),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.more_horiz,
-                                          color: Color(0xff212435),
-                                          size: 20,
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 4, 0, 0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          const Expanded(
-                                            flex: 1,
-                                            child: Text(
-                                              "22 Aug 2020",
-                                              textAlign: TextAlign.start,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 14,
-                                                color: Color(0xff000000),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            margin:
-                                            const EdgeInsets.fromLTRB(
-                                                8, 0, 0, 0),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 4, horizontal: 8),
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x4dffd200),
-                                              shape: BoxShape.rectangle,
-                                              borderRadius:
-                                              BorderRadius.circular(4.0),
-                                            ),
-                                            child: const Text(
-                                              "Leclerc",
-                                              textAlign: TextAlign.start,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 12,
-                                                color: Color(0xff000000),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xff636262),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                          Border.all(color: const Color(0xffffd200), width: 1),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const Icon(
-                              Icons.article,
-                              color: Color(0xffffd200),
-                              size: 50,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: const [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Text(
-                                                  "The Role of Cretivity in UX design?",
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 3,
-                                                  overflow:
-                                                  TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 16,
-                                                    color: Color(0xff000000),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.more_horiz,
-                                          color: Color(0xff212435),
-                                          size: 20,
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 4, 0, 0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          const Expanded(
-                                            flex: 1,
-                                            child: Text(
-                                              "15 Sep 2020",
-                                              textAlign: TextAlign.start,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 14,
-                                                color: Color(0xff000000),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            margin:
-                                            const EdgeInsets.fromLTRB(
-                                                8, 0, 0, 0),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 4, horizontal: 8),
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x4dffd200),
-                                              shape: BoxShape.rectangle,
-                                              borderRadius:
-                                              BorderRadius.circular(4.0),
-                                            ),
-                                            child: const Text(
-                                              "Casino",
-                                              textAlign: TextAlign.start,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 12,
-                                                color: Color(0xff000000),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ].addAll(lists),
+                      ...listslist,
+                    ]
                   ),
                 ],
               ),
