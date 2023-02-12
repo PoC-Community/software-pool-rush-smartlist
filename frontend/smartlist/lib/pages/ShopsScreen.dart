@@ -24,7 +24,7 @@ class _ShopsScreenState extends State<ShopsScreen> {
     final token = await getToken();
     final email = await getEmail();
     final response = await http.get(
-        Uri.http('51.159.159.151:3000', '/shops'),
+        Uri.http('51.159.159.151:3000', '/lists/shops'),
         headers: {'Authorization': token!, "email": email!});
     if (response.statusCode == 200) {
       List<Map<String, dynamic>> data = [];
