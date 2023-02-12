@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:smartlist/utils/Token.dart';
+import 'package:smartlist/utils/Email.dart';
 
 Future<void> register(String email, String password) async {
   final response = await http.post(
@@ -29,6 +30,7 @@ Future<void> login(String email, String password) async {
 
   if (response.statusCode == 200) {
     saveToken(jsonDecode(response.body)['token']);
+    saveEmail(email);
     CurrentScreen();
   } else {
     // Handle unsuccessful login
