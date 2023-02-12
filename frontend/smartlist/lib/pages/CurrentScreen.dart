@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:smartlist/pages/CreateList.dart';
 import 'package:smartlist/pages/ShopsScreen.dart';
 
 class CurrentScreen extends StatefulWidget {
@@ -500,7 +501,9 @@ class _CurrentScreenState extends State<CurrentScreen> {
               ),
               child: IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CreateList()));
+                },
                 color: const Color(0xff000000),
                 iconSize: 40,
               ),

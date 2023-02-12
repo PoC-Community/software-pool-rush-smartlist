@@ -11,16 +11,16 @@ class _ShopsScreenState extends State<ShopsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2e2e2e),
+      backgroundColor: const Color(0xff2e2e2e),
       appBar: AppBar(
         elevation: 4,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff262626),
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xff262626),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        title: Text(
+        title: const Text(
           "All lists",
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -29,7 +29,7 @@ class _ShopsScreenState extends State<ShopsScreen> {
             color: Color(0xffffd200),
           ),
         ),
-        actions: [
+        actions: const [
           Icon(Icons.search, color: Color(0xffffd200), size: 22),
         ],
       ),
@@ -72,11 +72,11 @@ class _ShopsScreenState extends State<ShopsScreen> {
         },
       ),
       body: GridView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         shrinkWrap: false,
         scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        physics: const ClampingScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
@@ -85,19 +85,19 @@ class _ShopsScreenState extends State<ShopsScreen> {
         children: [
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
-              color: Color(0xff636262),
+              color: const Color(0xff636262),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 Text(
                   "Leclerc",
                   textAlign: TextAlign.start,
@@ -128,19 +128,19 @@ class _ShopsScreenState extends State<ShopsScreen> {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
-              color: Color(0xff636262),
+              color: const Color(0xff636262),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 Text(
                   "Casino",
                   textAlign: TextAlign.start,
@@ -171,19 +171,19 @@ class _ShopsScreenState extends State<ShopsScreen> {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
-              color: Color(0xff636262),
+              color: const Color(0xff636262),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 Text(
                   "Casto",
                   textAlign: TextAlign.center,
@@ -214,19 +214,19 @@ class _ShopsScreenState extends State<ShopsScreen> {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
-              color: Color(0xff636262),
+              color: const Color(0xff636262),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 Text(
                   "XD",
                   textAlign: TextAlign.start,
@@ -257,19 +257,19 @@ class _ShopsScreenState extends State<ShopsScreen> {
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             decoration: BoxDecoration(
-              color: Color(0xff636262),
+              color: const Color(0xff636262),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Color(0x4d9e9e9e), width: 1),
+              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: [
+              children: const [
                 Text(
                   "Lorem",
                   textAlign: TextAlign.start,
