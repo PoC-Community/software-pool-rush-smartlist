@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartlist/pages/CurrentScreen.dart';
 import 'package:smartlist/pages/RegisterScreen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -230,7 +231,9 @@ class LoginScreen extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: MaterialButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentScreen()));
+                          },
                           color: const Color(0xffffd200),
                           elevation: 0,
                           shape: RoundedRectangleBorder(

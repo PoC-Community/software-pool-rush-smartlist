@@ -263,7 +263,9 @@ class RegisterScreen extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         color: const Color(0xffffd200),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
