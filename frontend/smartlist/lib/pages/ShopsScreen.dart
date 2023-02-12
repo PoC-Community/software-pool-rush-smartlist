@@ -21,14 +21,14 @@ class _ShopsScreenState extends State<ShopsScreen> {
   }
 
   Future<void> _getShops() async {
-    List<Container> list = [];
     final token = await getToken();
     final email = await getEmail();
     final response = await http.get(
         Uri.http('51.159.159.151:3000', '/shops'),
         headers: {'Authorization': token!, "email": email!});
     if (response.statusCode == 200) {
-      List<Map<String, dynamic>> data = jsonDecode(response.body);
+      List<Map<String, dynamic>> data = [];
+      data = List<Map<String, dynamic>>.from(jsonDecode(response.body));
       for (var i = 0; i < data.length; i++) {
         shopslist.add(Container(
           alignment: Alignment.center,

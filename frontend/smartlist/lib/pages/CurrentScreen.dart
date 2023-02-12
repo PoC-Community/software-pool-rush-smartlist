@@ -22,16 +22,16 @@ class _CurrentScreenState extends State<CurrentScreen> {
   }
 
   Future<void> _getLists() async {
-    List<Container> list = [];
     final token = await getToken();
     final email = await getEmail();
     final response = await http.get(
         Uri.http('51.159.159.151:3000', '/lists'),
         headers: {'Authorization': token!, "email": email!});
     if (response.statusCode == 200) {
-      List<Map<String, dynamic>> data = jsonDecode(response.body);
+      List<Map<String, dynamic>> data = [];
+      data = List<Map<String, dynamic>>.from(jsonDecode(response.body));
       for (var i = 0; i < data.length; i++) {
-        list.add(Container(
+        listslist.add(Container(
           margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
@@ -161,9 +161,6 @@ class _CurrentScreenState extends State<CurrentScreen> {
         )
         );
       }
-      setState(() {
-        listslist = list;
-      });
     } else {
       throw Exception('Failed to load lists');
     }
