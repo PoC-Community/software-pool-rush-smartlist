@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:smartlist/utils/CreateList.dart';
 
-class CreateList extends StatelessWidget {
+class CreateList extends StatefulWidget {
+  @override
+  State<CreateList> createState() => _CreateListState();
+}
+
+class _CreateListState extends State<CreateList> {
+
+  final _TitleController = TextEditingController();
+  final _ShopController = TextEditingController();
+
+  late String _Title;
+  late String _Shop;
+
+  @override
+  void dispose() {
+    _TitleController.dispose();
+    _ShopController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,10 +85,11 @@ class CreateList extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: TextField(
-                        controller: TextEditingController(),
+                        controller: _TitleController,
                         obscureText: false,
                         textAlign: TextAlign.center,
                         maxLines: 1,
+                        onChanged: (value) => _Title = value,
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
@@ -135,10 +156,11 @@ class CreateList extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
               child: TextField(
-                controller: TextEditingController(),
+                controller: _ShopController,
                 obscureText: false,
                 textAlign: TextAlign.start,
                 maxLines: 1,
+                onChanged: (value) => _Shop = value,
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
@@ -201,7 +223,11 @@ class CreateList extends StatelessWidget {
             width: 16,
           ),
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              if (_Title != '' && _Shop != '') {
+                CreateNewList(_Title, _Shop, context);
+              }
+            },
             color: const Color(0xffffd200),
             elevation: 0,
             shape: RoundedRectangleBorder(
