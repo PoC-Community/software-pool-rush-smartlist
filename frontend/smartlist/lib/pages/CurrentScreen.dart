@@ -216,15 +216,9 @@ class _CurrentScreenState extends State<CurrentScreen> {
         selectedIndex: 0,
         onTabChange: (index) {
           if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CurrentScreen()),
-            );
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CurrentScreen()));
           } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ShopsScreen()),
-            );
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ShopsScreen()));
           }
         },
       ),
