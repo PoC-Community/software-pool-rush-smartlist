@@ -218,8 +218,8 @@ class _CurrentScreenState extends State<CurrentScreen> {
           if (index == 0) {
             //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CurrentScreen()));
           } else if (index == 1) {
-            final VoidCallback onPop;
             Navigator.push(context, MaterialPageRoute(builder: (context) => ShopsScreen()));
+            _getLists();
           }
         },
       ),
@@ -270,6 +270,7 @@ class _CurrentScreenState extends State<CurrentScreen> {
                 icon: const Icon(Icons.add),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CreateList()));
+                  _getLists();
                 },
                 color: const Color(0xff000000),
                 iconSize: 40,

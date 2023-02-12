@@ -20,8 +20,6 @@ class _ShopsScreenState extends State<ShopsScreen> {
     _getShops();
   }
 
-
-
   Future<void> _getShops() async {
     final token = await getToken();
     final email = await getEmail();
