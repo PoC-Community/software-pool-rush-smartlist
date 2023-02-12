@@ -85,10 +85,30 @@ func newList(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "List created successfully"})
 }
 
+func shops(c *gin.Context) {
+	dbshops, err := database.GetUserShops(c.GetHeader("email"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, dbshops)
+}
+
+func shop(c *gin.Context) {
+	dbshop, err := database.GetUserListsByShop(c.GetHeader("email"), c.Param("shop"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, dbshop)
+}
+
 func ApplyListsRoutes(r *gin.Engine) {
 	r.GET("/lists", AuthMiddleware(), lists)
 	r.POST("/lists/newlist", AuthMiddleware(), newList)
 	r.GET("/lists/:list", AuthMiddleware(), listget)
 	r.POST("/lists/:list", AuthMiddleware(), listpost)
 	r.DELETE("/lists/:list", AuthMiddleware(), listdelete)
+	r.GET("/lists/shops", AuthMiddleware(), shops)
+	r.GET("/lists/shops/:shop", AuthMiddleware(), shop)
 }

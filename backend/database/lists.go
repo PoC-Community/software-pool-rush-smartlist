@@ -96,3 +96,12 @@ func SearchUserList(email, name string) (List, error) {
 	DataBase.Raw("SELECT name, list, shop, status, date FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ? AND Lists.name LIKE ?", email, name+"%").Scan(&list)
 	return list, nil
 }
+
+func GetUserShops(email string) ([]string, error) {
+	var shops []string
+	if email == "" {
+		return shops, errorNoEmail
+	}
+	DataBase.Raw("SELECT shop, count(shop) FROM Lists INNER JOIN Users ON Lists.fk_owner = Users.id WHERE Users.email LIKE ? GROUP BY shop", email).Scan(&shops)
+	return shops, nil
+}
