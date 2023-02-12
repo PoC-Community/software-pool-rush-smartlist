@@ -97,8 +97,8 @@ func SearchUserList(email, name string) (List, error) {
 	return list, nil
 }
 
-func GetUserShops(email string) ([]string, error) {
-	var shops []string
+func GetUserShops(email string) ([]Shops, error) {
+	var shops []Shops
 	if email == "" {
 		return shops, errorNoEmail
 	}

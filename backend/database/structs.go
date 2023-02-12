@@ -18,3 +18,8 @@ type List struct {
 	Status bool   `json:"status" binding:"required"`
 	Date   string `json:"date" binding:"required"`
 }
+
+type Shops struct {
+	Name  string `json:"name" binding:"required"`
+	Count string `json:"count" binding:"required"`
+}
