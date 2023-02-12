@@ -307,7 +307,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: MaterialButton(
                         onPressed: () {
                           if (_confirmPassword == _password) {
-                            register(_email, _password);
+                            register(_email, _password, context);
                           }
                         },
                         color: const Color(0xffffd200),

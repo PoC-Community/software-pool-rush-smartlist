@@ -257,7 +257,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         flex: 1,
                         child: MaterialButton(
                           onPressed: () {
-                            login(_email, _password);
+                            login(_email, _password, context);
                           },
                           color: const Color(0xffffd200),
                           elevation: 0,
