@@ -21,7 +21,6 @@ class _ShopsScreenState extends State<ShopsScreen> {
   }
 
   Future<void> _getShops() async {
-    List<Container> list = [];
     final token = await getToken();
     final email = await getEmail();
     final response = await http.get(

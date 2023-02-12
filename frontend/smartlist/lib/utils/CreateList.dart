@@ -13,7 +13,7 @@ Future<void> CreateNewList(String Title, String Shop, BuildContext context) asyn
   final response = await http.post(
     Uri.http('51.159.159.151:3000', '/lists/newlist'),
     headers: {'Authorization': token!, "email": email!},
-    body: jsonEncode({'name': Title, 'list': '', 'shop': Shop}),
+    body: jsonEncode({'name': Title, 'list': ' ', 'shop': Shop}),
   );
 
   if (response.statusCode == 200) {
