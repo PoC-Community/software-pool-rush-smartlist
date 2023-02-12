@@ -4,6 +4,7 @@ import 'package:smartlist/pages/CurrentScreen.dart';
 import 'package:http/http.dart' as http;
 import '../utils/Email.dart';
 import '../utils/Token.dart';
+import 'dart:convert';
 
 class ShopsScreen extends StatefulWidget {
   @override
@@ -24,10 +25,58 @@ class _ShopsScreenState extends State<ShopsScreen> {
     final token = await getToken();
     final email = await getEmail();
     final response = await http.get(
-        Uri.http('51.159.159.151:3000', '/lists'),
+        Uri.http('51.159.159.151:3000', '/shops'),
         headers: {'Authorization': token!, "email": email!});
+    if (response.statusCode == 200) {
+      List<Map<String, dynamic>> data = jsonDecode(response.body);
+      for (var i = 0; i < data.length; i++) {
+        shopslist.add(Container(
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            color: const Color(0xff636262),
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                data[i]["name"],
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.clip,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                  color: Color(0xffffac00),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+                child: Text(
+                  data[i]["count"] + " items",
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.clip,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 16,
+                    color: Color(0xff000000),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        );
+      }
+    }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,8 +134,7 @@ class _ShopsScreenState extends State<ShopsScreen> {
               context,
               MaterialPageRoute(builder: (context) => ShopsScreen()),
             );
-          }
-        },
+          }},
       ),
       body: GridView(
         padding: const EdgeInsets.all(16),
@@ -100,223 +148,10 @@ class _ShopsScreenState extends State<ShopsScreen> {
           childAspectRatio: 1.3,
         ),
         children: [
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              color: const Color(0xff636262),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  "Leclerc",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 20,
-                    color: Color(0xffffac00),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: Text(
-                    "1 items",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              color: const Color(0xff636262),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  "Casino",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 20,
-                    color: Color(0xffffac00),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: Text(
-                    "2 items",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              color: const Color(0xff636262),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  "Casto",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 20,
-                    color: Color(0xffffac00),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: Text(
-                    "1 items",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              color: const Color(0xff636262),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  "XD",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 20,
-                    color: Color(0xffffac00),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: Text(
-                    "2 items",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              color: const Color(0xff636262),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: const Color(0x4d9e9e9e), width: 1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  "Lorem",
-                  textAlign: TextAlign.start,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    fontSize: 20,
-                    color: Color(0xffffac00),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: Text(
-                    "1 items",
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.clip,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 16,
-                      color: Color(0xff000000),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ...shopslist,
         ],
       ),
     );
   }
 }
+
