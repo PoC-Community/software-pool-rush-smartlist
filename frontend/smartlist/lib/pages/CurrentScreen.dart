@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:smartlist/pages/CreateList.dart';
 import 'package:smartlist/pages/ShopsScreen.dart';
+import 'package:smartlist/utils/getLists.dart';
 
 class CurrentScreen extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class CurrentScreen extends StatefulWidget {
 }
 
 class _CurrentScreenState extends State<CurrentScreen> {
+  var lists = ProcessLists(getLists());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -346,135 +348,7 @@ class _CurrentScreenState extends State<CurrentScreen> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: const Color(0xff636262),
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(12.0),
-                          border:
-                          Border.all(color: const Color(0xffffd200), width: 1),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            const Icon(
-                              Icons.article,
-                              color: Color(0xffffd200),
-                              size: 50,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Expanded(
-                                          flex: 1,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: const [
-                                              Expanded(
-                                                flex: 1,
-                                                child: Text(
-                                                  "Chap 1",
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.clip,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontStyle: FontStyle.normal,
-                                                    fontSize: 16,
-                                                    color: Color(0xff000000),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const Icon(
-                                          Icons.more_horiz,
-                                          color: Color(0xff212435),
-                                          size: 20,
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 4, 0, 0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          const Expanded(
-                                            flex: 1,
-                                            child: Text(
-                                              "22 Mar 2020",
-                                              textAlign: TextAlign.start,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 14,
-                                                color: Color(0xff000000),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            margin:
-                                            const EdgeInsets.fromLTRB(
-                                                8, 0, 0, 0),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 4, horizontal: 8),
-                                            decoration: BoxDecoration(
-                                              color: const Color(0x4dffd200),
-                                              shape: BoxShape.rectangle,
-                                              borderRadius:
-                                              BorderRadius.circular(4.0),
-                                            ),
-                                            child: const Text(
-                                              "Leroy Merlin",
-                                              textAlign: TextAlign.start,
-                                              overflow: TextOverflow.clip,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle: FontStyle.normal,
-                                                fontSize: 12,
-                                                color: Color(0xff000000),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ].addAll(lists),
                   ),
                 ],
               ),
@@ -514,4 +388,3 @@ class _CurrentScreenState extends State<CurrentScreen> {
     );
   }
 }
-
