@@ -20,6 +20,8 @@ class _ShopsScreenState extends State<ShopsScreen> {
     _getShops();
   }
 
+
+
   Future<void> _getShops() async {
     final token = await getToken();
     final email = await getEmail();
@@ -125,15 +127,8 @@ class _ShopsScreenState extends State<ShopsScreen> {
         selectedIndex: 1,
         onTabChange: (index) {
           if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CurrentScreen()),
-            );
+            Navigator.pop(context);
           } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ShopsScreen()),
-            );
           }},
       ),
       body: GridView(

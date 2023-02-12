@@ -17,10 +17,7 @@ Future<void> CreateNewList(String Title, String Shop, BuildContext context) asyn
   );
 
   if (response.statusCode == 200) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => CurrentScreen()),
-    );
+    Navigator.pop(context);
   } else {
     // Handle unsuccessful registration
     throw Exception('Failed to register');
