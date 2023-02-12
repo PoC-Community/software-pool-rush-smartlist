@@ -53,4 +53,5 @@ func ApplyRoutes(r *gin.Engine) {
 	ApplyLoginRoutes(r)
 	ApplyListsRoutes(r)
 	ApplyProductsRoutes(r)
+	ApplyOptionsRoutes(r)
 }

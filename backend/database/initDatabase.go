@@ -4,12 +4,18 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"os"
 )
 
 var DataBase *gorm.DB
 
 func InitDatabase() *gorm.DB {
-	db, err := gorm.Open("postgres", "user=postgres password=password dbname=smartlist sslmode=disable")
+	passwd := os.Getenv("DB_PASS")
+	usr := os.Getenv("DB_USER")
+	host := os.Getenv("DB_HOST")
+	dbname := os.Getenv("DB_NAME")
+	port := os.Getenv("DB_PORT")
+	db, err := gorm.Open("postgres", fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=disable", usr, passwd, dbname, host, port))
 	if err != nil {
 		panic(fmt.Sprintf("unable to open PostgreSQL database :", err))
 	}
