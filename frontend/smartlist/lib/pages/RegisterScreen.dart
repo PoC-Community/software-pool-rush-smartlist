@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
-                    key: Key("RegisterEmail"),
+                    key: const Key("RegisterEmail"),
                     controller: TextEditingController(),
                     obscureText: false,
                     textAlign: TextAlign.start,
@@ -147,7 +147,7 @@ class RegisterScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextField(
-                    key: Key("RegisterPass"),
+                    key: const Key("RegisterPass"),
                     controller: TextEditingController(),
                     obscureText: true,
                     textAlign: TextAlign.start,

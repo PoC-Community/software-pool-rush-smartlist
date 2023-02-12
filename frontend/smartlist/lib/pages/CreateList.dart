@@ -4,16 +4,16 @@ class CreateList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff2e2e2e),
+      backgroundColor: const Color(0xff2e2e2e),
       appBar: AppBar(
         elevation: 4,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xff262626),
-        shape: RoundedRectangleBorder(
+        backgroundColor: const Color(0xff262626),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.zero,
         ),
-        title: Text(
+        title: const Text(
           "Editing",
           style: TextStyle(
             fontWeight: FontWeight.w700,
@@ -22,10 +22,15 @@ class CreateList extends StatelessWidget {
             color: Color(0xffffd200),
           ),
         ),
-        leading: Icon(
-          Icons.arrow_back,
-          color: Color(0xffffd200),
-          size: 24,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          color: const Color(0xffffd200),
+          iconSize: 24,
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Column(
@@ -33,17 +38,17 @@ class CreateList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 16,
             width: 16,
           ),
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.08,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0x00000000),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.zero,
@@ -56,7 +61,7 @@ class CreateList extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                     child: Align(
                       alignment: Alignment.center,
                       child: TextField(
@@ -64,7 +69,7 @@ class CreateList extends StatelessWidget {
                         obscureText: false,
                         textAlign: TextAlign.center,
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontStyle: FontStyle.normal,
                           fontSize: 18,
@@ -74,37 +79,37 @@ class CreateList extends StatelessWidget {
                           disabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xffffd200), width: 1),
+                                const BorderSide(color: Color(0xffffd200), width: 1),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xffffd200), width: 1),
+                                const BorderSide(color: Color(0xffffd200), width: 1),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                             borderSide:
-                                BorderSide(color: Color(0xffffd200), width: 1),
+                                const BorderSide(color: Color(0xffffd200), width: 1),
                           ),
                           labelText: "Title",
-                          labelStyle: TextStyle(
+                          labelStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 18,
                             color: Color(0xff9e9e9e),
                           ),
                           hintText: "List Title",
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontStyle: FontStyle.normal,
                             fontSize: 18,
                             color: Color(0xff9e9e9e),
                           ),
                           filled: true,
-                          fillColor: Color(0x00f2f2f3),
+                          fillColor: const Color(0x00f2f2f3),
                           isDense: false,
                           contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                              const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                         ),
                       ),
                     ),
@@ -113,28 +118,28 @@ class CreateList extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
             width: 16,
           ),
           Container(
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.06,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0x00000000),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.zero,
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
               child: TextField(
                 controller: TextEditingController(),
                 obscureText: false,
                 textAlign: TextAlign.start,
                 maxLines: 1,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontStyle: FontStyle.normal,
                   fontSize: 16,
@@ -143,68 +148,71 @@ class CreateList extends StatelessWidget {
                 decoration: InputDecoration(
                   disabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4.0),
-                    borderSide: BorderSide(color: Color(0xffffd200), width: 1),
+                    borderSide: const BorderSide(color: Color(0xffffd200), width: 1),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4.0),
-                    borderSide: BorderSide(color: Color(0xffffd200), width: 1),
+                    borderSide: const BorderSide(color: Color(0xffffd200), width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(4.0),
-                    borderSide: BorderSide(color: Color(0xffffd200), width: 1),
+                    borderSide: const BorderSide(color: Color(0xffffd200), width: 1),
                   ),
                   labelText: "Shop",
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
                     color: Color(0xff9e9e9e),
                   ),
                   hintText: "Shop",
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.normal,
                     fontSize: 16,
                     color: Color(0xff9e9e9e),
                   ),
                   filled: true,
-                  fillColor: Color(0x00f2f2f3),
+                  fillColor: const Color(0x00f2f2f3),
                   isDense: false,
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 ),
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
             width: 16,
           ),
           Container(
-            margin: EdgeInsets.all(0),
-            padding: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.45,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0x00000000),
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.zero,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
             width: 16,
           ),
           MaterialButton(
             onPressed: () {},
-            color: Color(0xffffd200),
+            color: const Color(0xffffd200),
             elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
-              side: BorderSide(color: Color(0xff808080), width: 1),
+              side: const BorderSide(color: Color(0xff808080), width: 1),
             ),
-            padding: EdgeInsets.all(16),
-            child: Text(
+            padding: const EdgeInsets.all(16),
+            textColor: const Color(0xff000000),
+            height: MediaQuery.of(context).size.height * 0.05,
+            minWidth: MediaQuery.of(context).size.width * 0.85,
+            child: const Text(
               "Submit",
               style: TextStyle(
                 fontSize: 16,
@@ -212,9 +220,6 @@ class CreateList extends StatelessWidget {
                 fontStyle: FontStyle.normal,
               ),
             ),
-            textColor: Color(0xff000000),
-            height: MediaQuery.of(context).size.height * 0.05,
-            minWidth: MediaQuery.of(context).size.width * 0.85,
           ),
         ],
       ),
